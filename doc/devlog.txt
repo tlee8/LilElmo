@@ -17,3 +17,11 @@ pd 06
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ==============================================================
 
+All -- 2019-05-09 22:00
+--------------------------------------------------------------
+- As a team worked on the design doc
+  -Aseer made the site map and description
+  -Shin made the component map
+  -Tim made the database schema
+  -Thomas delegated the roles and made a basic timeline
+==============================================================
