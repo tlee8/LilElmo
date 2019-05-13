@@ -25,3 +25,19 @@ All -- 2019-05-09 22:00
   -Tim made the database schema
   -Thomas delegated the roles and made a basic timeline
 ==============================================================
+
+All -- 2019-05-12 21:40
+--------------------------------------------------------------
+- As a team updated the design doc based on peer review
+  - One reviewer noted that we speak of the ability to vote
+    and comment on other people's animations, yet there was
+    no DB or components in place to enable this feature
+    - Tim added the schema for such components to function
+  - They also noted that we didn't explain how we would be
+    entering images into our database
+    - Shin answered this question
+  - Finally, they noted that our description of our home page
+    was severely lacking
+    - Sarar added information describing what the home page
+      would allow you to do/access
+==============================================================
