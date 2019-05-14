@@ -4,6 +4,7 @@ var circle = document.getElementById("circle");
 var rect = document.getElementById("rect");
 var line = document.getElementById("line");
 var free = document.getElementById("free");
+var save = document.getElementById("save");
 var requestID=0;
 var slider = document.getElementById("myRange");
 var id = 0;
@@ -14,6 +15,8 @@ var drawnr = false;
 var last = null;
 var lastr = null;
 var mouseDown=0;
+var img=[];
+var page=0;
 c.width = window.innerWidth-20;
 c.onmousedown=function(){
     mouseDown=true;
@@ -27,10 +30,17 @@ c.onmouseup=function(){
     }
 }
 
+
 circle.addEventListener('click', function(e){
     mode="circle";
 }
-		       );	      
+		       );
+save.addEventListener('click', function(e){
+    mode="save";
+    img[page]= c.toDataURL("image/png");
+    page++;
+}
+		     );	      
 line.addEventListener('click', function(e){
     drawn=false;
     last=null;
