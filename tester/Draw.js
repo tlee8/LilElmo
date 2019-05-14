@@ -5,6 +5,9 @@ var rect = document.getElementById("rect");
 var line = document.getElementById("line");
 var free = document.getElementById("free");
 var save = document.getElementById("save");
+var pages = document.getElementById("pages");
+var clear = document.getElementById("clear");
+var run = document.getElementById("run");
 var requestID=0;
 var slider = document.getElementById("myRange");
 var id = 0;
@@ -12,8 +15,10 @@ var radius = 2; // radius of circle
 var mode="";
 var drawn = false;
 var drawnr = false;
+var drawnf = false;
 var last = null;
 var lastr = null;
+var lastf = null;
 var mouseDown=0;
 var img=[];
 var page=0;
@@ -25,20 +30,49 @@ c.onmousedown=function(){
 c.onmouseup=function(){
     mouseDown=false;
     if(mode=="free"){
-	drawn=false;
-	last=null;
+	drawnf=false;
+	lastf=null;
     }
 }
+
+run.addEventListener('click', function(e){
+    mode="Play";
+    ctx.save();
+    var num=0;
+    var animation=setInterval(function(){
+	ctx.beginPath();
+	ctx.clearRect(0, 0, c.width, c.height);
+	imgs= new Image();
+	imgs.src = img[num];
+	ctx.drawImage(imgs,0,0);
+	num++;
+	if(num==page){
+	    clearInterval(animation);
+	}
+    }, 100);
+    ctx.restore();
+    
+}
+		    );
 
 
 circle.addEventListener('click', function(e){
     mode="circle";
 }
 		       );
+clear.addEventListener('click', function(e){
+    mode="clear";
+    ctx.clearRect(0, 0, c.width, c.height);
+}
+		       );
 save.addEventListener('click', function(e){
     mode="save";
     img[page]= c.toDataURL("image/png");
+    var row = document.getElementById("slide");
+    var cell= row.insertCell(page);
+    cell.innerHTML='<img class="custom" src="'+img[page]+'"/>';
     page++;
+
 }
 		     );	      
 line.addEventListener('click', function(e){
@@ -60,16 +94,17 @@ rect.addEventListener('click', function(e){
 
 c.addEventListener('mousemove',function(e) {
     if(mouseDown && mode=="free" ){
+	ctx.beginPath();
 	var xcor = e.offsetX;
 	var ycor = e.offsetY;
-	if(drawn){
-	    ctx.moveTo(last.x, last.y)
+	if(drawnf){
+	    ctx.moveTo(lastf.x, lastf.y)
 	    ctx.lineTo(xcor, ycor);
 	    ctx.stroke();
 	    
 	}
-	last = {x: xcor, y: ycor};
-	drawn = true;
+	lastf = {x: xcor, y: ycor};
+	drawnf = true;
 	
     }
 });

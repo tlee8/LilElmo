@@ -41,3 +41,29 @@ All -- 2019-05-12 21:40
     - Sarar added information describing what the home page
       would allow you to do/access
 ==============================================================
+
+aseerS-- 2019-05-13 12:30
+--------------------------------------------------------------
+-Made tester folder
+-Preliminary Flipbook with circle function and radius slider// subject to change
+-Rectangle WIP 
+==============================================================
+
+aseerS-- 2019-05-13 16:30
+--------------------------------------------------------------
+-Made Rectangle function
+-line function complete
+==============================================================
+
+aseerS-- 2019-05-14 3:30
+--------------------------------------------------------------
+-free draw function complete
+-save function complete
+==============================================================
+
+aseerS-- 2019-05-14 11:39
+--------------------------------------------------------------
+-animation function complete
+==============================================================
+
+
