@@ -1,5 +1,5 @@
 import sqlite3
-DB_FILE="data/food.db"
+DB_FILE="data/elmo.db"
 
 def createTable():
     """Creates the two main data tables for users and list of stories."""
@@ -8,12 +8,15 @@ def createTable():
     command = "CREATE TABLE users (username TEXT, password TEXT)"
     c.execute(command)
 
-    command = "CREATE TABLE favRec (username TEXT, recipe TEXT, id TEXT)"
+    command = "CREATE TABLE flipbooks (username TEXT, title TEXT, image TEXT, id INTEGER, timestamp DATETIME)"
     c.execute(command)
 
-    command = "CREATE TABLE RVRec (username TEXT, recipe TEXT, id INTEGER, recID TEXT)"
+    command = "CREATE TABLE interactions (id INTEGER, likes INTEGER, comments INTEGER)"
     c.execute(command)
 
+    command = "CREATE TABLE comments(id INTEGER, user TEXT, content TEXT)"
+    c.execute(command)
+    
     db.commit() #save changes
     db.close()  #close database
 
@@ -21,7 +24,7 @@ def createTable():
 
 def add_user(username, password):
     """Insert credentials for newly registered user into database."""
-    db = sqlite3.connect(DB_FILE)
+    db = sqlite3.connect("../"+DB_FILE)
     c = db.cursor()
     c.execute("INSERT INTO users VALUES(?, ?)", (username, password))
     db.commit() #save changes
@@ -29,7 +32,7 @@ def add_user(username, password):
 
 def auth_user(username, password):
     """Authenticate a user attempting to log in."""
-    db = sqlite3.connect(DB_FILE)
+    db = sqlite3.connect("../"+DB_FILE)
     c = db.cursor()
 
     # user_info = c.execute("SELECT users.username, users.password FROM users WHERE username={} AND password={}".format(username, password))
@@ -42,7 +45,7 @@ def auth_user(username, password):
 
 def check_user(username):
     """Check if a username has already been taken when registering."""
-    db = sqlite3.connect(DB_FILE)
+    db = sqlite3.connect("../"+DB_FILE)
     c = db.cursor()
 
     for entry in c.execute("SELECT users.username FROM users"):
@@ -52,3 +55,26 @@ def check_user(username):
     db.close()
     return False
 
+
+def add_ani(user, animation):
+    """add animation to db"""
+    db = sqdb = sqlite3.connect("../"+DB_FILE)
+    c = db.cursor()
+
+    ani= animation.split(",")
+    title = ani[0]
+    
+
+
+
+    
+# =========== db function tests ===========
+#createTable()
+#add_user('b','b');
+#print(auth_user('a','a'))
+#print(auth_user('a','b'))
+#print(auth_user('b','b'))
+#print(auth_user('c','s'))
+#print(check_user('a'))
+#print(check_user('b'))
+#print(check_user('c'))
