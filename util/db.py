@@ -8,7 +8,7 @@ def createTable():
     command = "CREATE TABLE users (username TEXT, password TEXT)"
     c.execute(command)
 
-    command = "CREATE TABLE flipbooks (username TEXT, title TEXT, image TEXT, id INTEGER, timestamp DATETIME)"
+    command = "CREATE TABLE flipbooks (username TEXT, title TEXT, image TEXT, id INTEGER)"
     c.execute(command)
 
     command = "CREATE TABLE interactions (id INTEGER, likes INTEGER, comments INTEGER)"
@@ -58,13 +58,17 @@ def check_user(username):
 
 def add_ani(user, animation):
     """add animation to db"""
-    db = sqdb = sqlite3.connect("../"+DB_FILE)
+    db = sqlite3.connect("../"+DB_FILE)
     c = db.cursor()
 
-    ani= animation.split(",")
-    title = ani[0]
-    
-
+    ani= animation.split(", ")
+    title = ani.pop(0)
+    frame = 0
+    for pic in ani:
+        c.execute("INSERT INTO flipbooks VALUES(?, ?, ?, ?)", (user, title, pic, frame))
+        frame +=1
+    db.commit() #save changes
+    db.close()  #close database
 
 
     
@@ -78,3 +82,4 @@ def add_ani(user, animation):
 #print(check_user('a'))
 #print(check_user('b'))
 #print(check_user('c'))
+add_ani('b', 'test, "da')
