@@ -5,171 +5,294 @@
   <head>
     <meta charset="utf-8"/>
   </head>
-<style>
-  .custom{
-  width:200px;
-  height:200px;
-  }
-  .custom2{
-  position:absolute;
-  left:50%;
-  }
-  .button {
-  height:80px;
-  width: 80px;
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 50%;
-  }
+  <style>
+    .spec{
+    border:0px;
+    }
+    .square {
+    height: 50px;
+    width: 50px;
+    background-color: #555;
+    display: inline-block;
+    }
+    .custom{
+    width:370px;
+    height:130px;
+    }
+    .custom2{
+    position:absolute;
+    left:50%;
+    }
+    .button {
+    height:80px;
+    width: 80px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    }
 
-  .button1 {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  }
-  
-  .button2 {
-  
-  background: repeating-linear-gradient(
-  45deg,
-  #000000,
-  #000000 10px,
-  #ffffff 10px,
-  #ffffff 20px
-  );
-  border: none;
-  color: #A9A9A9;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  }
+    .button1 {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+    
+    .button2 {
+    
+    background: repeating-linear-gradient(
+    45deg,
+    #000000,
+    #000000 10px,
+    #ffffff 10px,
+    #ffffff 20px
+    );
+    border: none;
+    color: #A9A9A9;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
 
-  .button3 {
-  width:63%;
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  }
+    .button3 {
+    width:63%;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
 
-  .slidecontainer {
-  width: 100%;
-  }
+    .slidecontainer {
+    width: 100%;
+    }
 
-  .slider {
-  -webkit-appearance: none;
-  width: 35%;
-  height: 25px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  }
+    .slider {
+    display: inline-block;
+    -webkit-appearance: none;
+    width: 35%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    }
 
-  .slider:hover {
-  opacity: 1;
-  }
+    .slider:hover {
+    opacity: 1;
+    }
 
-  .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  background: #4CAF50;
-  cursor: pointer;
-  }
+    .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+    }
 
-  #playground { border: 1px solid black }
-</style>
+    #playground { border: 1px solid black }
+  </style>
 
 
-<div>
+  <div>
     <button  class="button1" id="run">
-     Play
-   </button>
-  <button class ="button" id="circle">
-    Circle
-  </button>
-  <button class ="button1" id="rect">
-    Rectangle
-  </button>
-  <button class ="button2" id="line">
-    Line
-  </button>
- 
-  <button class ="button1" id="free">
-    Free Draw
-  </button>
-   <button class ="button1" id="Shapes">
-     Shapes
-   </button>
+      Play
+    </button>
+    <button class ="button" id="circle">
+      Circle
+    </button>
+    <button class ="button1" id="rect">
+      Rectangle
+    </button>
+    <button class ="button2" id="line">
+      Line
+    </button>
+    
+    <button class ="button1" id="free">
+      Free Draw
+    </button>
+   
+    <button class ="button1" id="eraser">
+      Eraser
+    </button>
     <button class ="button1" id="clear">
-     Clear
-   </button>
-   <button  class="button1" id="save">
-     Save
-   </button>
-  
-     <button  class="button1" id="end">
-     Finish
-   </button>
-</div>  
+      Clear
+    </button>
+    <button  class="button1" id="save">
+      Save
+    </button>
+    Frame Rate:
+    <input min="1" max="1000" class="spec" type="number" name="rate" value="1" id="rate">
+    <button  class="button1" id="end">
+      Finish
+    </button>
+  </div>  
 
-<canvas height="500" id="playground">
-</canvas>
+  <canvas height="500" id="playground">
+  </canvas>
 </br>
 <div style="overflow-x:auto;">
-  <table style="width:100%" id="pages">
+  <table style="width:10%" id="pages">
     <tr class="custom2">
       <th>Pages</th>   
     </tr>
+    </br>
     <tr id="slide">
 
     </tr>
   </table>
 </div>
 </br>
-<div class="slidecontainer">
-  <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
-</div>
-<p>Radius: <span id="demo"></span></p>
+  <p onclick="switch1()" id="switch1" mode="S"><font color="green">Stroke</font>/<font color="red">Fill</font></p>
+  <p id="Clicks"> </p>
+  </br>
+  
+  <div id="sfcolor" class="square"></div>
+  <p>Blue: <span id="bluev"></span></p>
+  <div class="slidecontainer">
+    <input type="range" min="0" max="355" value="0" class="slider" id="blue">
+    
+  </div>
+  <p>Red: <span id="redv"></span></p>
+  <div class="slidecontainer">
+    <input type="range" min="0" max="355" value="0" class="slider" id="red">
+  </div>
+  <p>Green: <span id="greenv"></span></p>
+  <div class="slidecontainer">
+    <input type="range" min="0" max="355" value="0" class="slider" id="green">
+  </div>
+  <p>Size: <span id="demo"></span></p>
+  <div class="slidecontainer">
+    <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
+  </div>
+  <p>Stroke Size: <span id="sstroze"></span></p>
+  <div class="slidecontainer">
+    <input type="range" min="1" max="100" value="0" class="slider" id="ssize">
+  </div>
+  <script src="Draw.js">
+  </script>
+  <script>
+    function switch1() {
+    var m=document.getElementById("switch1").getAttribute("mode");
+    if(m=="S"){
+    document.getElementById("switch1").setAttribute("mode","F");
+    document.getElementById("switch1").innerHTML="<font color="+"red"+">Stroke</font>"+"/"+"<font color="+"green"+">Fill</font>";
+    }
+    else{
+    document.getElementById("switch1").setAttribute("mode","S");
+    document.getElementById("switch1").innerHTML="<font color="+"green"+">Stroke</font>"+"/"+"<font color="+"red"+">Fill</font>";
+    }
+    }
+  </script>
+  <script>
+    var color="";
+    var colors="";
+    var colorf="";
+    var red="0";
+    var green="0";
+    var blue="0";
+    var sq = document.getElementById("sfcolor");
+    color="rgb("+red+","+green+","+blue+")";
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
 
-<script src="Draw.js">
-</script>
-<script>
-  var slider = document.getElementById("myRange");
-  var output = document.getElementById("demo");
-  output.innerHTML = slider.value;
+    slider.oninput = function() {
+    output.innerHTML = this.value;
+ 
+    }
+  </script>
+   <script>
+    var a = document.getElementById("blue");
+    var b = document.getElementById("bluev");
+    b.innerHTML = a.value;
 
-  slider.oninput = function() {
-  output.innerHTML = this.value;
-  }
-</script>
+    a.oninput = function() {
+    b.innerHTML = this.value;
+    blue=this.value;
+    color="rgb("+red+","+green+","+blue+")";
+    sq.style.backgroundColor=color;
+    if(document.getElementById("switch1").getAttribute("mode")=="S"){
+    colors=color;
+    }
+    else{
+    colorf=color;
+    }
+    }
+   </script>
+    <script>
+    var y = document.getElementById("red");
+    var d = document.getElementById("redv");
+    d.innerHTML = y.value;
+
+    y.oninput = function() {
+    d.innerHTML = this.value;
+    red=this.value;
+    color="rgb("+red+","+green+","+blue+")";
+    sq.style.backgroundColor=color;
+    if(document.getElementById("switch1").getAttribute("mode")=="S"){
+    colors=color;
+    }
+    else{
+    colorf=color;
+    }
+    }
+    </script>
+    <script>
+    var e = document.getElementById("green");
+    var f = document.getElementById("greenv");
+    f.innerHTML = e.value;
+
+    e.oninput = function() {
+    f.innerHTML = this.value;
+    green=this.value;
+    color="rgb("+red+","+green+","+blue+")";
+    sq.style.backgroundColor=color;
+    if(document.getElementById("switch1").getAttribute("mode")=="S"){
+    colors=color;
+    }
+    else{
+    colorf=color;
+    }
+    }
+    </script>
+ <script>
+    var p = document.getElementById("ssize");
+    var o = document.getElementById("sstroze");
+    o.innerHTML = p.value;
+
+    p.oninput = function() {
+    o.innerHTML = this.value;
+  
+    }
+ </script>
+ 
+
+ 
   </br>
 </html>
