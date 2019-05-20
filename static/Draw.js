@@ -5,6 +5,7 @@ var rect = document.getElementById("rect");
 var line = document.getElementById("line");
 var free = document.getElementById("free");
 var save = document.getElementById("save");
+var undo = document.getElementById("Undo");
 var strokesize = document.getElementById("ssize");
 var pages = document.getElementById("pages");
 var eraser = document.getElementById("eraser");
@@ -25,7 +26,9 @@ var lastf = null;
 var mouseDown=0;
 var img=[];
 var page=0;
+var paged=-1;
 var clickn=0;
+var currs;
 
 document.addEventListener("keydown", function(e){
     var tipo=e.key;
@@ -45,12 +48,22 @@ document.addEventListener("keydown", function(e){
 	mode="eraser";
     }
     else if(tipo=="s"){
-	mode="save";
-	img[page]= c.toDataURL("image/png");
 	var row = document.getElementById("slide");
-	var cell= row.insertCell(page);
-	cell.innerHTML='<img onclick="ttravel('+page+')" class="custom" src="'+img[page]+'"/>';
-	page++;
+	mode="save";
+	if(paged!=-1){
+	    row.deleteCell(paged);
+	    img[paged]= c.toDataURL("image/png");
+	    var cell= row.insertCell(paged);
+	    cell.innerHTML=page+'<img class="custom" src="'+img[paged]+'" onclick="ttravel('+paged+')"/>';
+	    paged=-1;
+	    
+	}
+	else{
+	    img[page]= c.toDataURL("image/png");
+	    var cell= row.insertCell(page);
+	    cell.innerHTML='<img class="custom" src="'+img[page]+'" onclick="ttravel('+page+')"/>';
+	    page++;
+	}
     }
     else if(tipo=="q"){
 	mode="clear";
@@ -75,9 +88,9 @@ c.onmouseup=function(){
 
 run.addEventListener('click', function(e){
     var curr=rate.value;
+    currs=c.toDataURL("image/png");
     if(page>0){
 	mode="Play";
-	ctx.save();
 	var num=0;
 	var animation=setInterval(function(){
 	    ctx.beginPath();
@@ -90,9 +103,8 @@ run.addEventListener('click', function(e){
 		clearInterval(animation);
 	    }
 	},1000/curr);
-	ctx.restore();
-	
     }
+   
 }
 		    );
 
@@ -109,14 +121,24 @@ clear.addEventListener('click', function(e){
     mode="clear";
     ctx.clearRect(0, 0, c.width, c.height);
 }
-		       );
+		      );
 save.addEventListener('click', function(e){
-    mode="save";
-    img[page]= c.toDataURL("image/png");
     var row = document.getElementById("slide");
-    var cell= row.insertCell(page);
-    cell.innerHTML='<img class="custom" src="'+img[page]+'"/>';
-    page++;
+    mode="save";
+    if(paged!=-1){
+	row.deleteCell(paged);
+	img[paged]= c.toDataURL("image/png");
+	var cell= row.insertCell(paged);
+	cell.innerHTML=page+'<img class="custom" src="'+img[paged]+'" onclick="ttravel('+paged+')"/>';
+	paged=-1;
+	
+    }
+    else{
+	img[page]= c.toDataURL("image/png");
+	var cell= row.insertCell(page);
+	cell.innerHTML='<img class="custom" src="'+img[page]+'" onclick="ttravel('+page+')"/>';
+	page++;
+    }
 
 }
 		     );	      
