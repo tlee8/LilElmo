@@ -25,8 +25,10 @@ var lastr = null;
 var lastf = null;
 var mouseDown=0;
 var img=[];
+var saved=[];
 var page=0;
 var paged=-1;
+var ppage=-1;
 var clickn=0;
 var currs;
 
@@ -41,6 +43,16 @@ document.addEventListener("keydown", function(e){
     else if(tipo=="l"){
 	mode="line";
     }
+    else if(tipo=="u"){
+	if(ppage>=0){
+	    ctx.beginPath();
+	    ctx.clearRect(0, 0, c.width, c.height);
+	    imgs= new Image();
+	    imgs.src = saved[ppage];
+	    ctx.drawImage(imgs,0,0);
+	    ppage--;
+	}
+    }
     else if(tipo=="f"){
 	mode="free";
     }
@@ -52,16 +64,16 @@ document.addEventListener("keydown", function(e){
 	mode="save";
 	if(paged!=-1){
 	    row.deleteCell(paged);
-	    img[paged]= c.toDataURL("image/png");
+	    img[paged]= c.toDataURL("image/png"); 
 	    var cell= row.insertCell(paged);
-	    cell.innerHTML=page+'<img class="custom" src="'+img[paged]+'" onclick="ttravel('+paged+')"/>';
+	    cell.innerHTML="<center>"+(paged+1)+"</center>"+'<img class="custom" src="'+img[paged]+'" onclick="ttravel('+paged+')"/>';
 	    paged=-1;
 	    
 	}
 	else{
 	    img[page]= c.toDataURL("image/png");
 	    var cell= row.insertCell(page);
-	    cell.innerHTML='<img class="custom" src="'+img[page]+'" onclick="ttravel('+page+')"/>';
+	    cell.innerHTML="<center>"+(page+1)+"</center>"+'<img class="custom" src="'+img[page]+'" onclick="ttravel('+page+')"/>';
 	    page++;
 	}
     }
@@ -82,6 +94,8 @@ c.onmouseup=function(){
     if(mode=="free" || mode=="eraser"){
 	drawnf=false;
 	lastf=null;
+	ppage++;
+	saved[ppage]= c.toDataURL("image/png"); 
     }
 }
 
@@ -104,9 +118,20 @@ run.addEventListener('click', function(e){
 	    }
 	},1000/curr);
     }
-   
+    
 }
 		    );
+
+undo.addEventListener('click', function(e){
+    if(ppage>=0){
+	ctx.beginPath();
+	ctx.clearRect(0, 0, c.width, c.height);
+	imgs= new Image();
+	imgs.src = saved[ppage];
+	ctx.drawImage(imgs,0,0);
+	ppage--;
+    }
+}
 
 
 circle.addEventListener('click', function(e){
@@ -202,6 +227,8 @@ c.addEventListener('mousemove',function(e) {
 
 c.addEventListener('click', function(e){
     if(mode=="circle"){
+	ppage++;
+	saved[ppage]= c.toDataURL("image/png"); 
 	var xcor = e.offsetX;
 	var ycor = e.offsetY;
 	ctx.beginPath();
@@ -216,6 +243,8 @@ c.addEventListener('click', function(e){
 	var xcor = e.offsetX;
 	var ycor = e.offsetY;
 	if(drawnr){
+	    ppage++;
+	    saved[ppage]= c.toDataURL("image/png");
 	    ctx.beginPath();
 	    ctx.lineWidth = 1;
 	    ctx.ellipse(xcor, ycor, 1, 1, Math.PI / 4, 0, 2 * Math.PI);
@@ -251,6 +280,8 @@ c.addEventListener('click', function(e){
 	var xcor = e.offsetX;
 	var ycor = e.offsetY;
 	if(drawn){
+	    ppage++;
+	    saved[ppage]= c.toDataURL("image/png"); 
 	    ctx.lineCap = "round";
 	    ctx.lineWidth = slider.value;
 	    ctx.moveTo(last.x, last.y)
@@ -268,4 +299,3 @@ c.addEventListener('click', function(e){
 	drawn = true;
     }
 })
-
