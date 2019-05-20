@@ -132,7 +132,7 @@ undo.addEventListener('click', function(e){
 	ppage--;
     }
 }
-
+		     );
 
 circle.addEventListener('click', function(e){
     mode="circle";
