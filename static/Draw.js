@@ -35,12 +35,18 @@ var currs;
 document.addEventListener("keydown", function(e){
     var tipo=e.key;
     if(tipo=="c"){
+	ppage++;
+	saved[ppage]= c.toDataURL("image/png"); 
 	mode="circle";
     }
     else if(tipo=="r"){
+	ppage++;
+	saved[ppage]= c.toDataURL("image/png"); 
 	mode="rectangle";
     }
     else if(tipo=="l"){
+	ppage++;
+	saved[ppage]= c.toDataURL("image/png"); 
 	mode="line";
     }
     else if(tipo=="u"){
@@ -78,6 +84,8 @@ document.addEventListener("keydown", function(e){
 	}
     }
     else if(tipo=="q"){
+	ppage++;
+	saved[ppage]= c.toDataURL("image/png"); 
 	mode="clear";
 	ctx.clearRect(0, 0, c.width, c.height);
     }
@@ -87,6 +95,9 @@ document.addEventListener("keydown", function(e){
 c.width = window.innerWidth-20;
 c.onmousedown=function(){
     mouseDown=true;
+    if(mode=="free" || mode=="eraser"){
+	saved[ppage+1]= c.toDataURL("image/png"); 
+    }
 }
 
 c.onmouseup=function(){
@@ -95,7 +106,6 @@ c.onmouseup=function(){
 	drawnf=false;
 	lastf=null;
 	ppage++;
-	saved[ppage]= c.toDataURL("image/png"); 
     }
 }
 
@@ -136,13 +146,19 @@ undo.addEventListener('click', function(e){
 
 circle.addEventListener('click', function(e){
     mode="circle";
+    ppage++;
+    saved[ppage]= c.toDataURL("image/png"); 
 }
 		       );
 eraser.addEventListener('click', function(e){
     mode="eraser";
+    ppage++;
+    saved[ppage]= c.toDataURL("image/png"); 
 }
 		       );
 clear.addEventListener('click', function(e){
+    ppage++;
+    saved[ppage]= c.toDataURL("image/png"); 
     mode="clear";
     ctx.clearRect(0, 0, c.width, c.height);
 }
@@ -168,6 +184,8 @@ save.addEventListener('click', function(e){
 }
 		     );	      
 line.addEventListener('click', function(e){
+    ppage++;
+    saved[ppage]= c.toDataURL("image/png"); 
     drawn=false;
     last=null;
     clicks=2;
@@ -175,10 +193,14 @@ line.addEventListener('click', function(e){
 }
 		     )	;	      
 free.addEventListener('click', function(e){
+    ppage++;
+    saved[ppage]= c.toDataURL("image/png"); 
     mode="free";
 }
 		     );
 rect.addEventListener('click', function(e){
+    ppage++;
+    saved[ppage]= c.toDataURL("image/png"); 
     clicks=2;
     mode="rectangle";
 
@@ -214,7 +236,7 @@ c.addEventListener('mousemove',function(e) {
 	    ctx.strokeStyle = "white";
 	    ctx.lineWidth = strokesize.value;
 	    ctx.stroke();
-	   
+	    
 	    
 	}
 	lastf = {x: xcor, y: ycor};
@@ -227,8 +249,6 @@ c.addEventListener('mousemove',function(e) {
 
 c.addEventListener('click', function(e){
     if(mode=="circle"){
-	ppage++;
-	saved[ppage]= c.toDataURL("image/png"); 
 	var xcor = e.offsetX;
 	var ycor = e.offsetY;
 	ctx.beginPath();
@@ -243,8 +263,6 @@ c.addEventListener('click', function(e){
 	var xcor = e.offsetX;
 	var ycor = e.offsetY;
 	if(drawnr){
-	    ppage++;
-	    saved[ppage]= c.toDataURL("image/png");
 	    ctx.beginPath();
 	    ctx.lineWidth = 1;
 	    ctx.ellipse(xcor, ycor, 1, 1, Math.PI / 4, 0, 2 * Math.PI);
@@ -279,9 +297,7 @@ c.addEventListener('click', function(e){
 	ctx.strokeStyle=colors;
 	var xcor = e.offsetX;
 	var ycor = e.offsetY;
-	if(drawn){
-	    ppage++;
-	    saved[ppage]= c.toDataURL("image/png"); 
+	if(drawn){	  
 	    ctx.lineCap = "round";
 	    ctx.lineWidth = slider.value;
 	    ctx.moveTo(last.x, last.y)
