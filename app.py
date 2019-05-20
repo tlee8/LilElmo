@@ -17,27 +17,6 @@ app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
 
-#===========================EXTRACTING API DATA=================================
-
-
-weather = apeye.weather("summary")
-temperature = apeye.weather("temperature")
-
-word, definition = apeye.word()
-
-dateFact = apeye.number()
-
-dogPic = apeye.dog()#Im()
-catPic = apeye.cat()#Im()
-
-dogVid = dogPic[-3:] == 'mp4'
-catVid = catPic[-3:] == 'mp4'
-
-articles = apeye.news()
-
-print(dogVid,catVid)
-
-
 
 #===============================ROOT ROUTE======================================
 
@@ -47,7 +26,7 @@ Root route, immediately redirects to login page; users must be logged in to use
 @app.route("/")
 def hello():
     if session.get('username'):
-        return redirect(url_for("home"))
+        return redirect(url_for("draw"))
     else:
         return redirect(url_for("login"))
 
@@ -78,7 +57,7 @@ def auth():
     if  dataaccess.loginuser(request.form['username'], request.form['password']):
         session['username'] = request.form['username']
         flash("Welcome " + session['username'] + "! You have successfully logged in.")
-        return redirect(url_for("home"))
+        return redirect(url_for("draw"))
     else:
         flash("Your login credentials were incorrect.")
         return redirect(url_for("login"))
@@ -127,101 +106,16 @@ def logout():
 
 #==============================VIEWING INFO=====================================
 
-
-'''
-Displays information from all APIs to logged in users
-
-dailies = dataaccess.getPrefs(session.get('username'))[1]
-if "Weather" in dailies:
-    weather = apeye.weather()["currently"]["summary"]
-    temperature = apeye.weather()["currently"]["temperature"]
-if "Dog" in dailies:
-    dogPic = apeye.dogIm()
-if "Cat" in dailies:
-    catPic = apeye.catIm()
-if "Word" in dailies:
-    words, defs = apeye.word()
-    x = random.randint(1, len(words)) - 1
-    word = words[x]
-    definition = defs[x]
-if "Date" in dailies:
-    s = apeye.number()
-'''
-@app.route("/home", methods=["POST", "GET"])
-def home():
+# remember to change "draw" to "home"
+@app.route("/draw", methods=["POST", "GET"])
+def draw():
     ''' Displays information from all APIs to logged in users
     '''
     #sources = dataaccess.getPrefs(session.get('username'))[0]
     #news = apeye.news(sources)
-    return render_template("home.html", title = "DAILY BATT", user = session.get('username'), articles = articles, word = word, definition = definition, weather = weather, temperature = temperature, dateFact = dateFact, dogPic = dogPic, catPic = catPic, dogVid = dogVid, catVid = catVid)
-
-'''
-Currently not functional
-
-@app.route("/myarticles", methods = ["POST", "GET"])
-def myarticles():
-    \'\'\'Displays any articles the user has shared, had shared with them,
-    liked, commented on, etc.
-    \'\'\'
-    return render_template("myarticles.html", myarticles = True, title = "My Articles", user = session.get('username'), articles = articles, word = word, definition = definition, weather = weather, temperature = temperature)
-'''
-
-'''
-Currently not functional
-
-@app.route("/popularposts")
-def popposts():
-    \'\'\'Displays articles with the most comments, shares, and likes
-    \'\'\'
-    return render_template("popularposts.html", popposts = True, title = "Popular Posts", user = session.get('username'), articles = articles, word = word, definition = definition, weather = weather, temperature = temperature)
-'''
+    return render_template("draw.html", title = "Animado Bravado", user = session.get('username'))
 
 
-
-@app.route("/article", methods=["POST", "GET"])
-def article():
-    '''Displays a single article, includes link to source website'''
-    if "username" not in session:
-        return redirect(url_for("login"))
-    title = request.args["title"]
-    print(title)
-    for article in articles:
-        if title == articles[article][0]:
-            print(article)
-            return render_template("article.html", article = articles[article])
-
-
-#============================USER PREFERENCES===================================
-
-'''
-Currently not functional
-
-@app.route("/preferences")
-def preferences():
-    \'\'\'Displays page allowing users to choose their preferences
-
-    By default, all possible information is shown.
-    Users can choose what news sources and what daily bits they want on their
-    home page
-    New information will update in database
-    \'\'\'
-    #sources = dataaccess.getPrefs(session.get('username'))[0]
-    #dailies = dataaccess.getPrefs(session.get('username'))[1]
-    return render_template("preferences.html", pref = True) #, sources = sources, dailies = dailies )
-'''
-
-'''
-Currently not functional
-
-@app.route("/updatepref", methods = ["POST"])
-def updatepref():
-    \'\'\'Adds information from users selected preferences to database\'\'\'
-    sources = request.form.getlist('sources')
-    dailies = request.form.getlist('dailies')
-    #dataaccess.setPrefs(session.get('username'), sources, dailies)
-    flash("You have successfully updated your preferences.")
-    return redirect(url_for("home"))
-'''
 
 
 if __name__== "__main__":
