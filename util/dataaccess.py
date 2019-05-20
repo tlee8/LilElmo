@@ -10,7 +10,7 @@
 import sqlite3
 
 from datetime import date
-from util import db_builder
+import db_builder
 
 db_builder.main()
 
