@@ -6,7 +6,7 @@ import ssl
 
 from flask import Flask, render_template, session, request, url_for, redirect, flash
 
-from util import dataaccess, apeye
+from util import dataaccess
 
 if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
     getattr(ssl, '_create_unverified_context', None)):
