@@ -4,7 +4,6 @@
 
   <head>
     <meta charset="utf-8"/>
-  </head>
   <style>
     .spec{
     border:0px;
@@ -117,8 +116,10 @@
 
     #playground { border: 1px solid black }
   </style>
-
-
+</head>
+  <h1>Title:
+      <input class="spec"  name="title" value="Input Project Name" id="title">
+  </h1>
   <div>
     <button  class="button1" id="run">
       Play
@@ -143,6 +144,9 @@
     <button class ="button1" id="Undo">
       Undo
     </button>
+    <button class ="button1" id="crop">
+      Crop
+    </button>
     <button class ="button1" id="clear">
       Clear
     </button>
@@ -150,8 +154,10 @@
       Save
     </button>
     Frame Rate:
-    <input min="1" max="1000" class="spec"  name="rate" value="1" id="rate">
-    <button  class="button1" id="end">
+    <input type="number" min="1" max="1000" class="spec"  name="rate" value="1" id="rate">
+    <form action="/endp" method="POST" id="finishP">
+    </form>
+    <button  type="submit" form="finishP" class="button1" id="end" gather="">
       Finish
     </button>
   </div>  

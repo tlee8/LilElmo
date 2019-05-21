@@ -6,7 +6,9 @@ var line = document.getElementById("line");
 var free = document.getElementById("free");
 var save = document.getElementById("save");
 var undo = document.getElementById("Undo");
+var crop = document.getElementById("crop");
 var strokesize = document.getElementById("ssize");
+var end = document.getElementById("end");
 var pages = document.getElementById("pages");
 var eraser = document.getElementById("eraser");
 var clear = document.getElementById("clear");
@@ -18,6 +20,7 @@ var id = 0;
 var radius = 2; // radius of circle
 var mode="";
 var drawn = false;
+var drawing = false;
 var drawnr = false;
 var drawnf = false;
 var last = null;
@@ -31,6 +34,29 @@ var paged=-1;
 var ppage=-1;
 var clickn=0;
 var currs;
+var keyP;
+var test;
+var cropI;
+document.addEventListener("keydown", function(e){
+    var keyC=e.key;
+    keyP=keyC;
+    var imgData = ctx.getImageData(0, 0, c.width, c.height);
+    if(keyC=="ArrowLeft"){
+	ctx.putImageData(imgData, -1, 0);	
+    }
+    else if(keyC=="ArrowRight"){
+	ctx.putImageData(imgData, 1, 0);	
+     }
+    else if(keyC=="ArrowUp"){
+	ctx.putImageData(imgData, 0, -1);	
+     }
+    else if(keyC=="ArrowDown"){
+	ctx.putImageData(imgData, 0, 1);	
+    }
+}
+			 );
+
+
 
 document.addEventListener("keydown", function(e){
     var tipo=e.key;
@@ -48,6 +74,8 @@ document.addEventListener("keydown", function(e){
 	ppage++;
 	saved[ppage]= c.toDataURL("image/png"); 
 	mode="line";
+	drawn=false;
+	last=null;
     }
     else if(tipo=="u"){
 	if(ppage>=0){
@@ -61,6 +89,9 @@ document.addEventListener("keydown", function(e){
     }
     else if(tipo=="f"){
 	mode="free";
+	drawn=false;
+	last=null;
+	
     }
     else if(tipo=="e"){
 	mode="eraser";
@@ -144,12 +175,31 @@ undo.addEventListener('click', function(e){
 }
 		     );
 
+crop.addEventListener('click', function(e){
+    mode="crop";
+    drawn=false;
+    last=null;
+}
+		       );
+
 circle.addEventListener('click', function(e){
     mode="circle";
     ppage++;
     saved[ppage]= c.toDataURL("image/png"); 
 }
 		       );
+end.addEventListener('click', function(e){
+    mode="end";
+    var ptitle=document.getElementById("title").getAttribute("value");
+    var gather=ptitle+",";
+    for(var ca=0; ca<page;ca++){
+	gather+=img[ca]+",";
+    }
+    document.getElementById("end").setAttribute("gather",gather);
+    
+}
+		       );
+
 eraser.addEventListener('click', function(e){
     mode="eraser";
     ppage++;
@@ -313,5 +363,23 @@ c.addEventListener('click', function(e){
 	ctx.fill(); //fills it
 	last = {x: xcor, y: ycor};
 	drawn = true;
+    }
+    else if(mode=="crop"){
+	ctx.beginPath();
+	var xcor = e.offsetX;
+	var ycor = e.offsetY;
+	if(drawn && !drawing ){	  
+	    cropI = ctx.getImageData(last.x, last.y, xcor-last.x, ycor-last.y);
+	    drawing=true;
+	}
+	else if(drawing){
+	    c.onmouseup=function(){
+		ctx.putImageData(cropI, xcor, ycor);	
+	    }
+	}
+	if(!drawing){
+	    last = {x: xcor, y: ycor};
+	    drawn = true;
+	}
     }
 })
