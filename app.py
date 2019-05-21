@@ -6,7 +6,7 @@ import ssl
 
 from flask import Flask, render_template, session, request, url_for, redirect, flash
 
-from util import dataaccess
+from util import db_builder
 
 if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
     getattr(ssl, '_create_unverified_context', None)):
@@ -54,7 +54,7 @@ Flashes success message if exists, redirect to home, adds user to session
 '''
 @app.route("/auth", methods = ["POST"])
 def auth():
-    if  dataaccess.loginuser(request.form['username'], request.form['password']):
+    if  db_builder.loginuser(request.form['username'], request.form['password']):
         session['username'] = request.form['username']
         flash("Welcome " + session['username'] + "! You have successfully logged in.")
         return redirect(url_for("draw"))
@@ -82,7 +82,7 @@ def regauth():
     if not request.form['password'] == request.form['password2']:
         flash("Your passwords do not match")
         return redirect(url_for("register"))
-    if dataaccess.registeruser(request.form['username'], request.form['password']):
+    if db_builder.registeruser(request.form['username'], request.form['password']):
         flash("You have successfully created an account")
         return redirect(url_for("login"))
     flash("The username you entered is taken.")
