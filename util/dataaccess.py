@@ -1,16 +1,9 @@
-#BATTery
-#Thomas Lee (PM)
-#Britni Canale
-#Ahnaf Kazi
-#Tim Marder
-#p06
-
 '''This script extracts data from database for use in application'''
 
 import sqlite3
 
 from datetime import date
-import db_builder
+from util import db_builder
 
 db_builder.main()
 
@@ -21,7 +14,7 @@ Checks if user already exists
 If not, adds new user to database
 '''
 def registeruser(user, pwd):
-    DB_FILE="data/BATT.db"
+    DB_FILE="data/Elmo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT username FROM users WHERE username = \'"+user+"\'"
@@ -39,7 +32,7 @@ def registeruser(user, pwd):
 Checks login credentials from database
 '''
 def loginuser(user, pwd):
-    DB_FILE="data/BATT.db"
+    DB_FILE="data/Elmo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT username, password FROM users WHERE username = ? AND password = ?"
@@ -48,44 +41,10 @@ def loginuser(user, pwd):
     rows = c.fetchone()
     return rows
 
-'''
-These are not currently being implemented
-
-def saveday(cat, dog, word, defi, weather, temperature):
-        date = date.today().isoformat()
-        params = (date, cat, dog, word, defi, weather, temperature)
-        c.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?)", params)
-        db.commit() #save changes
-        db.close()  #close database
-
-def newday():
-    DB_FILE = "data/BATT.db"
-    date = date.today().isoformat()
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    command = "SELECT date FROM daily WHERE date = {0}".format(date)
-    c.execute(command)
-    rows = c.fetchone()
-    if rows:
-        return False
-    else:
-        return True
-
-def update():
-    if newday:
-        weather = apeye.weather()["currently"]["summary"]
-        temperature = apeye.weather()["currently"]["temperature"]
-        words, defs = apeye.word()
-        x = random.randint(1, len(words)) - 1
-        word = words[x]
-        definition = defs[x]
-        saveday("","","",word,definition,)
-'''
-
 def setPref(user,text,types):
     #db_builder.main()
 
-    DB_FILE = "data/BATT.db"
+    DB_FILE = "data/Elmo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     params = (user,text,types)
@@ -101,7 +60,7 @@ def setPrefs(user, sources, dailies):
     #print(dailies)
     print(user)
     print('\n\n')
-    DB_FILE = "data/BATT.db"
+    DB_FILE = "data/Elmo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
@@ -121,7 +80,7 @@ def setPrefs(user, sources, dailies):
 
 def getPrefs(user):
     #db_builder.main()
-    DB_FILE = "data/BATT.db"
+    DB_FILE = "data/Elmo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
