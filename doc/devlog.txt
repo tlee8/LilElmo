@@ -45,7 +45,8 @@ All -- 2019-05-12 21:40
 aseerS-- 2019-05-13 12:30
 --------------------------------------------------------------
 -Made tester folder
--Preliminary Flipbook with circle function and radius slider// subject to change
+-Preliminary Flipbook with circle function and radius slider//
+ subject to change
 -Rectangle WIP 
 ==============================================================
 
@@ -86,4 +87,31 @@ leeT-- 2019-05-16 9:00
 --------------------------------------------------------------
 -uploaded app to DO droplet
 -ip: 159.89.234.226
+==============================================================
+
+aseerS-- 2019-05-17 12:25
+--------------------------------------------------------------
+-fixed eraser
+       - no longer connects points
+==============================================================
+
+bambaS-- 2019-05-17 12:30
+--------------------------------------------------------------
+-worked on login database functions
+==============================================================
+
+aseerS-- 2019-05-20 11:30
+--------------------------------------------------------------
+-added undo function
+-added ability to return to previous frame so users no longer
+ have to redraw a frame
+==============================================================
+
+marderT-- 2019-05-20 12:30
+--------------------------------------------------------------
+-added html files including:
+       -base
+       -login
+       -register
+-helped Shin with some database functions
 ==============================================================
