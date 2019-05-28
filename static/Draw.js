@@ -17,6 +17,8 @@ var run = document.getElementById("run");
 var requestID=0;
 var slider = document.getElementById("myRange");
 var id = 0;
+var frame=0;
+var fps, fpsInterval, startTime, now, then, elapsed;
 var radius = 2; // radius of circle
 var mode="";
 var drawn = false;
@@ -37,6 +39,7 @@ var currs;
 var keyP;
 var test;
 var cropI;
+
 document.addEventListener("keydown", function(e){
     var keyC=e.key;
     keyP=keyC;
@@ -142,26 +145,38 @@ c.onmouseup=function(){
 
 
 run.addEventListener('click', function(e){
-    var curr=rate.value;
+    frame=0;
     currs=c.toDataURL("image/png");
-    if(page>0){
-	mode="Play";
-	var num=0;
-	var animation=setInterval(function(){
-	    ctx.beginPath();
-	    ctx.clearRect(0, 0, c.width, c.height);
-	    imgs= new Image();
-	    imgs.src = img[num];
-	    ctx.drawImage(imgs,0,0);
-	    num++;
-	    if(num==page){
-		clearInterval(animation);
-	    }
-	},1000/curr);
-    }
+    then = Date.now();
+    startTime = then;
+    fpsInterval = 1000 /document.getElementById("rate").value;
+    runner();
     
 }
 		    );
+
+var runner=function (e){
+    if(page>0){
+	mode="Play";
+	now = Date.now();
+	elapsed = now - then;
+	if (elapsed > fpsInterval) {
+	    then = now - (elapsed % fpsInterval);
+	    ctx.beginPath();
+	    ctx.clearRect(0, 0, c.width, c.height);
+	    imgs= new Image();
+	    imgs.src = img[frame];
+	    ctx.drawImage(imgs,0,0);
+	    frame++;
+	}
+	requestID = window.requestAnimationFrame(runner);
+	
+    }
+    if(frame==page){
+	window.cancelAnimationFrame(requestID); // stops animation
+	return;
+    }
+}
 
 undo.addEventListener('click', function(e){
     if(ppage>=0){
@@ -191,9 +206,9 @@ circle.addEventListener('click', function(e){
 end.addEventListener('click', function(e){
     mode="end";
     var ptitle=document.getElementById("title").getAttribute("value");
-    var gather=ptitle+",";
+    var gather=ptitle+","+document.getElementById("rate").value;
     for(var ca=0; ca<page;ca++){
-	gather+=img[ca]+",";
+	gather+=","+img[ca];
     }
     document.getElementById("end").setAttribute("gather",gather);
     
@@ -364,7 +379,11 @@ c.addEventListener('click', function(e){
 	last = {x: xcor, y: ycor};
 	drawn = true;
     }
-    else if(mode=="crop"){
+
+});
+
+c.addEventListener('click', function(e){
+    if(mode=="crop"){
 	ctx.beginPath();
 	var xcor = e.offsetX;
 	var ycor = e.offsetY;
@@ -373,13 +392,14 @@ c.addEventListener('click', function(e){
 	    drawing=true;
 	}
 	else if(drawing){
-	    c.onmouseup=function(){
-		ctx.putImageData(cropI, xcor, ycor);	
-	    }
+	    ctx.putImageData(cropI, xcor-(cropI.width/2), ycor-(cropI.height/2));	
+	    
 	}
 	if(!drawing){
 	    last = {x: xcor, y: ycor};
 	    drawn = true;
 	}
     }
-})
+
+}
+		  );
