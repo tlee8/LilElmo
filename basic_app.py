@@ -8,6 +8,8 @@ app = Flask(__name__)
 def home():
     return render_template('Draw.html')
 
-if __name__== "__main__":
-    app.debug = True
-    app.run()
+@app.route('/endp',methods = ['POST', 'GET'])
+def result():
+   if request.method == 'POST':
+      result = request.form
+      return render_template("
