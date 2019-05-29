@@ -8,7 +8,7 @@ from datetime import date
 
 DB_FILE="data/elmo.db"
 
-db = sqlite3.connect("../"+DB_FILE) #open if file exists, otherwise create
+db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
 c = db.cursor() #facilitates db operations
 
 
@@ -30,7 +30,7 @@ def interaction(): #creates the daily db
 
 
 def registeruser(user, pwd):
-    DB_FILE="data/Elmo.db"
+    DB_FILE="data/elmo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT username FROM users WHERE username = \'"+user+"\'"
@@ -48,7 +48,7 @@ def registeruser(user, pwd):
 Checks login credentials from database
 '''
 def loginuser(user, pwd):
-    DB_FILE="data/Elmo.db"
+    DB_FILE="data/elmo.db"
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT username, password FROM users WHERE username = ? AND password = ?"

@@ -8,9 +8,9 @@ from flask import Flask, render_template, session, request, url_for, redirect, f
 
 from util import db_builder
 
-if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
-    getattr(ssl, '_create_unverified_context', None)):
-    ssl._create_default_https_context = ssl._create_unverified_context
+#if (not os.environ.get('PYTHONHTTPSVERIFY', '') and
+#    getattr(ssl, '_create_unverified_context', None)):
+#    ssl._create_default_https_context = ssl._create_unverified_context
 
 
 app = Flask(__name__)
@@ -46,7 +46,7 @@ def login():
 
 
 '''
-Authorizes users' login information
+Authrizes users' login information
 
 Checks if their profile exists in database
 Flashes error if does not exist, redirect to login
@@ -113,7 +113,7 @@ def draw():
     '''
     #sources = dataaccess.getPrefs(session.get('username'))[0]
     #news = apeye.news(sources)
-    return render_template("draw.html", title = "Animado Bravado", user = session.get('username'))
+    return render_template("Draw.html", title = "Animado Bravado", user = session.get('username'))
 
 
 
