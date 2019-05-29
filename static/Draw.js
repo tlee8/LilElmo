@@ -108,7 +108,15 @@ document.addEventListener("keydown", function(e){
 	    var cell= row.insertCell(paged);
 	    cell.innerHTML="<center>"+(paged+1)+"</center>"+'<img class="custom" src="'+img[paged]+'" onclick="ttravel('+paged+')"/>';
 	    paged=-1;
-	    
+	    mode="end";
+	    var ptitle=document.getElementById("title").getAttribute("value");
+	    var gather=ptitle+","+document.getElementById("rate").value;
+	    for(var ca=0; ca<page;ca++){
+		gather+=","+img[ca];
+	    }
+	    document.getElementById("end").setAttribute("gather",gather);
+	    document.getElementById("imgstring").setAttribute("value",gather);
+	    document.getElementById("imgstring").value=gather;
 	}
 	else{
 	    img[page]= c.toDataURL("image/png");
@@ -203,17 +211,7 @@ circle.addEventListener('click', function(e){
     saved[ppage]= c.toDataURL("image/png"); 
 }
 		       );
-end.addEventListener('click', function(e){
-    mode="end";
-    var ptitle=document.getElementById("title").getAttribute("value");
-    var gather=ptitle+","+document.getElementById("rate").value;
-    for(var ca=0; ca<page;ca++){
-	gather+=","+img[ca];
-    }
-    document.getElementById("end").setAttribute("gather",gather);
-    
-}
-		       );
+
 
 eraser.addEventListener('click', function(e){
     mode="eraser";
@@ -237,7 +235,15 @@ save.addEventListener('click', function(e){
 	var cell= row.insertCell(paged);
 	cell.innerHTML=page+'<img class="custom" src="'+img[paged]+'" onclick="ttravel('+paged+')"/>';
 	paged=-1;
-	
+	mode="end";
+	var ptitle=document.getElementById("title").getAttribute("value");
+	var gather=ptitle+","+document.getElementById("rate").value;
+	for(var ca=0; ca<page;ca++){
+	    gather+=","+img[ca];
+	}
+	document.getElementById("end").setAttribute("gather",gather);
+	document.getElementById("imgstring").setAttribute("value",gather);
+	document.getElementById("imgstring").value=gather;
     }
     else{
 	img[page]= c.toDataURL("image/png");
