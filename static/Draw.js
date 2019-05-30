@@ -102,14 +102,6 @@ document.addEventListener("keydown", function(e){
     else if(tipo=="s"){
 	var row = document.getElementById("slide");
 	mode="save";
-	var ptitle=document.getElementById("title").getAttribute("value");
-	var gather=ptitle+","+document.getElementById("rate").value;
-	for(var ca=0; ca<page;ca++){
-	    gather+=","+img[ca];
-	}
-	document.getElementById("end").setAttribute("gather",gather);
-	document.getElementById("imgstring").setAttribute("value",gather);
-	document.getElementById("imgstring").value=gather;
 	if(paged!=-1){
 	    row.deleteCell(paged);
 	    img[paged]= c.toDataURL("image/png"); 
@@ -123,6 +115,14 @@ document.addEventListener("keydown", function(e){
 	    cell.innerHTML="<center>"+(page+1)+"</center>"+'<img class="custom" src="'+img[page]+'" onclick="ttravel('+page+')"/>';
 	    page++;
 	}
+	var ptitle=document.getElementById("title").getAttribute("value");
+	var gather=ptitle+","+document.getElementById("rate").value;
+	for(var ca=0; ca<page;ca++){
+	    gather+=","+img[ca];
+	}
+	document.getElementById("end").setAttribute("gather",gather);
+	document.getElementById("imgstring").setAttribute("value",gather);
+	document.getElementById("imgstring").value=gather;
     }
     else if(tipo=="q"){
 	ppage++;
@@ -228,14 +228,6 @@ clear.addEventListener('click', function(e){
 save.addEventListener('click', function(e){
     var row = document.getElementById("slide");
     mode="save";
-    var ptitle=document.getElementById("title").getAttribute("value");
-    var gather=ptitle+","+document.getElementById("rate").value;
-    for(var ca=0; ca<page;ca++){
-	gather+=","+img[ca];
-    }
-    document.getElementById("end").setAttribute("gather",gather);
-    document.getElementById("imgstring").setAttribute("value",gather);
-    document.getElementById("imgstring").value=gather;
     if(paged!=-1){
 	row.deleteCell(paged);
 	img[paged]= c.toDataURL("image/png");
@@ -249,6 +241,14 @@ save.addEventListener('click', function(e){
 	cell.innerHTML='<img class="custom" src="'+img[page]+'" onclick="ttravel('+page+')"/>';
 	page++;
     }
+    var ptitle=document.getElementById("title").getAttribute("value");
+    var gather=ptitle+","+document.getElementById("rate").value;
+    for(var ca=0; ca<page;ca++){
+	gather+=","+img[ca];
+    }
+    document.getElementById("end").setAttribute("gather",gather);
+    document.getElementById("imgstring").setAttribute("value",gather);
+    document.getElementById("imgstring").value=gather;
 
 }
 		     );	      
