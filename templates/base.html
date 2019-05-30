@@ -44,6 +44,11 @@
         <div class ="col-sm-1 col-lg-2"></div>
 
       </div>
+	{% set msgs = get_flashed_messages() %}
+{% for each in msgs %}
+      <div class="alert alert-warning" role="alert">{{each}}</div>
+
+    {% endfor %}
 {% block body %}
     content
     {% endblock %}

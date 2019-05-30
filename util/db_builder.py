@@ -48,14 +48,17 @@ def registeruser(user, pwd):
 Checks login credentials from database
 '''
 def loginuser(user, pwd):
-    DB_FILE="data/elmo.db"
+    """Authenticate a user attempting to log in."""
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT username, password FROM users WHERE username = ? AND password = ?"
-    params = (user, pwd)
-    c.execute(command, params)
-    rows = c.fetchone()
-    return rows
+
+    # user_info = c.execute("SELECT users.username, users.password FROM users WHERE username={} AND password={}".format(username, password))
+    for entry in c.execute("SELECT users.username, users.password FROM users"):
+        if(entry[0] == user and entry[1] == pwd):
+            db.close()
+            return True
+    db.close()
+    return False
 
 def add_ani(user, animation):
     """add animation to db"""
