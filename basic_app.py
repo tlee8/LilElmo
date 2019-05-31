@@ -1,5 +1,7 @@
 from flask import Flask, render_template, session, request, url_for, redirect, flash
 
+from util import db_builder
+
 app = Flask(__name__)
 
 
@@ -13,6 +15,7 @@ def result():
    if request.method == 'POST':
       result = request.form
       print(result)
+      db_builder.add_ani('b',result['imgstring'])
       return render_template("result.html", result = result)
 
 if __name__== "__main__":

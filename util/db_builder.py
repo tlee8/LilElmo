@@ -62,10 +62,10 @@ def loginuser(user, pwd):
 
 def add_ani(user, animation):
     """add animation to db"""
-    db = sqlite3.connect("../"+DB_FILE)
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
-    ani= animation.split(", ")
+    ani= animation.split(",")
     title = ani.pop(0)
     frame = ani.pop(0)
     num = 0
