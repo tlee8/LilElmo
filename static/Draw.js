@@ -116,9 +116,9 @@ document.addEventListener("keydown", function(e){
 	    page++;
 	}
 	var ptitle=document.getElementById("title").getAttribute("value");
-	var gather=ptitle+","+document.getElementById("rate").value;
+	var gather=ptitle+" ,"+document.getElementById("rate").value;
 	for(var ca=0; ca<page;ca++){
-	    gather+=","+img[ca];
+	    gather+=" ,"+img[ca];
 	}
 	document.getElementById("end").setAttribute("gather",gather);
 	document.getElementById("imgstring").setAttribute("value",gather);
@@ -242,9 +242,9 @@ save.addEventListener('click', function(e){
 	page++;
     }
     var ptitle=document.getElementById("title").getAttribute("value");
-    var gather=ptitle+","+document.getElementById("rate").value;
+    var gather=ptitle+", "+document.getElementById("rate").value;
     for(var ca=0; ca<page;ca++){
-	gather+=","+img[ca];
+	gather+=", "+img[ca];
     }
     document.getElementById("end").setAttribute("gather",gather);
     document.getElementById("imgstring").setAttribute("value",gather);
