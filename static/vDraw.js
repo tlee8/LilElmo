@@ -13,7 +13,7 @@ var done=false;
 
 if(!done){
     var a= document.getElementById("run").getAttribute("gather");
-    a=a.split(",");
+    a=a.split(" ,");
     var row = document.getElementById("slide");
     var pag=2;
     while(a[pag]!=null){
@@ -25,7 +25,7 @@ if(!done){
 }
 run.addEventListener('click', function(e){
     var s= document.getElementById("run").getAttribute("gather");
-    s=s.split(",");
+    s=s.split(" ,");
     var x=2;
     while(s[x]!=null){
 	img[x-2]=s[x];
