@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8"/>
+  <style>
+    .spec{
+    border:0px;
+    }
+    .square {
+    height: 50px;
+    width: 50px;
+    background-color: #555;
+    display: inline-block;
+    }
+    .custom{
+    width:370px;
+    height:130px;
+    }
+    .custom2{
+    position:absolute;
+    left:50%;
+    }
+    .button {
+    height:80px;
+    width: 80px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    }
+
+    .button1 {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+    
+    .button2 {
+    
+    background: repeating-linear-gradient(
+    45deg,
+    #000000,
+    #000000 10px,
+    #ffffff 10px,
+    #ffffff 20px
+    );
+    border: none;
+    color: #A9A9A9;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+
+    .button3 {
+    width:63%;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+
+    .slidecontainer {
+    width: 100%;
+    }
+
+    .slider {
+    display: inline-block;
+    -webkit-appearance: none;
+    width: 35%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    }
+
+    .slider:hover {
+    opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+    }
+
+    #playground { border: 1px solid black }
+  </style>
+</head>
+  <h1>Title:{{ title }}
+  </h1>
+  <div>
+    <button  class="button1" id="run" rate="{{ frame }}" gather="{{ gather }}">
+      Play
+    </button>
+   
+    Frame Rate:{{ frame }}
+   
+  </div>  
+
+  <canvas height="500" id="playground">
+  </canvas>
+</br>
+<div style="overflow-x:auto;">
+  <table style="width:10%" id="pages">
+    <tr class="custom2">
+      <th>Pages</th>   
+    </tr>
+    </br>
+    <tr id="slide">
+
+    </tr>
+  </table>
+</div>
+</br>
+<script src="{{ url_for('static', filename='vDraw.js') }}"></script>
+<script>
+
+  
+</script>
+</html>
