@@ -115,6 +115,13 @@ def draw():
     #news = apeye.news(sources)
     return render_template("Draw.html", title = "Animado Bravado", user = session.get('username'))
 
+@app.route('/endp',methods = ['POST', 'GET'])
+def result():
+   if request.method == 'POST':
+      result = request.form
+      print(result)
+      db_builder.add_ani('b',result['imgstring'])
+      return render_template("result.html", result = result)
 
 
 

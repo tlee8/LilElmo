@@ -12,11 +12,13 @@ def home():
 
 @app.route('/endp',methods = ['POST', 'GET'])
 def result():
-   if request.method == 'POST':
-      result = request.form
-      print(result)
-      db_builder.add_ani('b',result['imgstring'])
-      return render_template("result.html", result = result)
+	if request.method == 'POST':
+		result = request.form
+		#print(result)
+		#print("=================================================================")
+		#print(result['imgstring'])
+		db_builder.add_ani('b',result['imgstring'])
+		return render_template("result.html", result = result)
 
 if __name__== "__main__":
     app.debug = True
