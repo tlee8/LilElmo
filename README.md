@@ -11,6 +11,7 @@ Our project is an app where a user can make an animation via flipbook style. The
 
 ## LAUNCH CODES
 
+#### Install and run on localhost
 1. Activate your virtual environment 
 ```
 $ python3 -m venv venv
@@ -41,4 +42,5 @@ $ python app.py
 
 7. Explore our app!
 
-Alternatively, use this link: http://159.89.234.226
+#### Install and run on Apache2
+
