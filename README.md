@@ -43,4 +43,39 @@ $ python app.py
 7. Explore our app!
 
 #### Install and run on Apache2
-
+1. SSH into your droplet
+```$ ssh <user>@<ip address>```
+2. Change directories to the www directory 
+```$ cd ../../var/www```
+3. Create a directory named after your app and then cd into it
+```
+$ mkdir <appname>
+$ cd <appname>
+```
+4. Get root access
+```$ sudo su ```
+5. Create a wsgi file named \<appname\>.wsgi
+6. Clone the repo via https
+```$ git clone https://github.com/tlee8/LilElmo.git <appname> ```
+7. Add write permisssions
+```
+$ chgrp -R www-data <appname>
+$ chmod -R g+w <appname>
+```
+8. Move into the repo, rename app.py, and install requirements
+```
+$ cd <appname>
+$ mv app.py __init__.py
+$ pip3 install -r requirements.txt
+```
+9. Change directories to the sites-enabled directory
+```$ cd ~/../../etc/apache2/sites-enabled/```
+10. Create a conf file named \<appname\>.conf
+11. Enable the site:
+```$ a2ensite <appname>```
+12. Reload and restart the server
+```
+$ service apache2 reload
+$ service apache2 restart
+```
+13. Open your browser and go to your ip address!
