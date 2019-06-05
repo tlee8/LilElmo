@@ -135,7 +135,7 @@ def get_com(title):
 	db.close()  #close database
 	return data
 
-def get_likes
+#def get_likes
 
 	
 def main(): #calls all of the functions to build the databases
