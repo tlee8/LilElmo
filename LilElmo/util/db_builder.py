@@ -3,10 +3,15 @@ This script creates a database with the necessary tables for data to be stored
 '''
 
 import sqlite3 #imports sqlite
+import os
 
 from datetime import date
 
-DB_FILE="data/elmo.db"
+
+DIR = os.path.dirname(__file__) or '.'
+DIR += '/../'
+
+DB_FILE = DIR + "data/elmo.db"
 
 db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
 c = db.cursor() #facilitates db operations
