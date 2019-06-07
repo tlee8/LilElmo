@@ -116,9 +116,19 @@ marderT-- 2019-05-20 12:30
 -helped Shin with some database functions
 ==============================================================
 
+LeeT-- 2019-05-21 12:30
+--------------------------------------------------------------
+added navbar
+==============================================================
+
 bambaS-- 2019-05-23 12:22
 --------------------------------------------------------------
 updated add_ani() now adds date and extra frame variable
+==============================================================
+
+LeeT-- 2019-05-21 12:30
+--------------------------------------------------------------
+added buttons and fixed navbar
 ==============================================================
 
 bambaS-- 2019-05-29 12:15
@@ -126,14 +136,25 @@ bambaS-- 2019-05-29 12:15
 log in form added
 ==============================================================
 
-bambaS-- 2019-05-29 20:46
+aseerS-- 2019-05-29 17:52
 --------------------------------------------------------------
-users can now successfully login and register
+fixed the save function
 ==============================================================
 
 bambaS-- 2019-05-29 20:46
 --------------------------------------------------------------
 users can now successfully login and register
+==============================================================
+
+aseerS, bambaS, leeT-- 2019-05-30 12:32
+--------------------------------------------------------------
+worked on passing string images to database
+=============================================================
+
+aseerS, bambaS, leeT-- 2019-05-31 12:29
+--------------------------------------------------------------
+fixed bugs with errors regarding finish projects and strings
+not appearing
 ==============================================================
 
 bambaS-- 2019-06-01 17:25
@@ -151,4 +172,11 @@ LeeT-- 2019-06-05 22:27
 Reviewed team 3Browns1White's launch instructions, which seem
 to work very well. Only very minor typos in missing a slash in
 in step two and a misnamed file in step four.
+==============================================================
+
+LeeT-- 2019-06-06 20:27
+--------------------------------------------------------------
+Fixed suggestions made by gelfandD of team 3Brown1White
+regarding launch instructions. One fix was to fix the db path
+using os. The rest was fixing the readme instructions.
 ==============================================================
