@@ -69,7 +69,7 @@ $ mv app.py __init__.py
 $ pip3 install -r requirements.txt
 ```
 8. Move the wsgi file to the \<appname\> directory ```mv LilElmo.wsgi ../```
-9. Move the conf file to the sites-available directory ```mv LilElmo.conf ~/../../etc/apache2/sites-enabled/```
+9. Change the ServerName in the conf file to the ip of your own droplet and move the file to the sites-available directory ```mv LilElmo.conf ~/../../etc/apache2/sites-enabled/```
 10. Change directories to the sites-enabled directory
 ```$ cd ~/../../etc/apache2/sites-enabled/```
 11. Enable the site:
