@@ -148,19 +148,19 @@ def get_titles():
 	temp = c.execute("SELECT title FROM flipbooks").fetchall()
 	for entry in temp:
 		if (not entry in data):
-			data.append(entry)
+			data.append(entry[0])
 	db.close() #close
 	return data
 
-def get_titles(username):
+def get_title(username):
 	db = sqlite3.connect(DB_FILE)
 	c = db.cursor()
 	
 	data = []
 	temp = c.execute("SELECT title FROM flipbooks WHERE username = '{}'".format(username)).fetchall()
 	for entry in temp:
-		if (not entry in data):
-			data.append(entry)
+		if (not entry[0] in data):
+			data.append(entry[0])
 	db.close() #close
 	return data
 #def get_likes
@@ -184,5 +184,5 @@ main()
 #add_com('b','Input Project Name', 'this is amazing')
 #add_com('b','Input Project Name', 'this sucks')
 #3print(get_com("Input Project Name"))
-print(get_titles("b"))
-print(get_titles("asd"))
+#print(get_title("b"))
+#print(get_title("asd"))

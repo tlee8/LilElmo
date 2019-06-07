@@ -2,11 +2,11 @@
 
 {%block title%} Login {%endblock%}
 
-{%block header%}<h2>List</h2>{%endblock%}
+{%block header%}<h2>BATTery</h2>{%endblock%}
 
 {%block page%}
 
-My Projects
+Public Projects
 
 {%endblock%}
 
@@ -27,8 +27,8 @@ My Projects
 
 
 {%block body%}
-<h1> My List </h1>
+<h1> List </h1>
 {% for each in titles %}
-{{each}}
+	{{each}} <br>
 {% endfor %}
 {%endblock%}

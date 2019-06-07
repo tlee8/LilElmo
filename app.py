@@ -117,18 +117,29 @@ def draw():
 
 @app.route('/endp',methods = ['POST', 'GET'])
 def result():
-   if request.method == 'POST':
-      result = request.form
-      print(result)
-      db_builder.add_ani('b',result['imgstring'])
-      return render_template("biew.html", result = result)
+	if request.method == 'POST':
+		result = request.form
+		#print(result)
+		db_builder.add_ani('b',result['imgstring'])
+		animation = db_builder.build_ani(result['imgstring'].split(", ").pop(0))
+		#print(animation)
+		data = result['imgstring'].split(", ")
+		title = data.pop(0)
+		frame = data.pop(0)
+		return render_template("biew.html", result = result, title = title, frame = frame, gather = animation)
 
 @app.route("/projects", methods=['POST','GET'])
 def myProjects():
 	''' Displays users projects'''
-	return render_template("projects.html")
+	titles = db_builder.get_title(session['username'])
+	return render_template("projects.html", titles = titles)
 	
-	
+@app.route("/public", methods=['POST','GET'])
+def public():
+	''' Displays users projects'''
+	titles = db_builder.get_titles()
+	return render_template("public.html", titles = titles)
+		
 	
 if __name__== "__main__":
     app.debug = True
