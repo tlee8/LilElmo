@@ -104,26 +104,28 @@ document.addEventListener("keydown", function(e){
 	mode="save";
 	if(paged!=-1){
 	    row.deleteCell(paged);
-	    img[paged]= c.toDataURL("image/png"); 
+	    img[paged]= c.toDataURL("image/png");
 	    var cell= row.insertCell(paged);
-	    cell.innerHTML="<center>"+(paged+1)+"</center>"+'<img class="custom" src="'+img[paged]+'" onclick="ttravel('+paged+')"/>';
+	    cell.innerHTML=page+'<img class="custom" src="'+img[paged]+'" onclick="ttravel('+paged+')"/>';
 	    paged=-1;
 	}
 	else{
 	    img[page]= c.toDataURL("image/png");
 	    var cell= row.insertCell(page);
-	    cell.innerHTML="<center>"+(page+1)+"</center>"+'<img class="custom" src="'+img[page]+'" onclick="ttravel('+page+')"/>';
+	    cell.innerHTML='<img class="custom" src="'+img[page]+'" onclick="ttravel('+page+')"/>';
 	    page++;
 	}
-	var ptitle=document.getElementById("title").getAttribute("value");
-	var gather=ptitle+" ,"+document.getElementById("rate").value;
+	var ptitle=document.getElementById("title").value;
+	var gather=ptitle+", "+document.getElementById("rate").value;
 	for(var ca=0; ca<page;ca++){
-	    gather+=" ,"+img[ca];
+	    gather+=", "+img[ca];
 	}
 	document.getElementById("end").setAttribute("gather",gather);
 	document.getElementById("imgstring").setAttribute("value",gather);
 	document.getElementById("imgstring").value=gather;
+
     }
+
     else if(tipo=="q"){
 	ppage++;
 	saved[ppage]= c.toDataURL("image/png"); 
@@ -241,7 +243,7 @@ save.addEventListener('click', function(e){
 	cell.innerHTML='<img class="custom" src="'+img[page]+'" onclick="ttravel('+page+')"/>';
 	page++;
     }
-    var ptitle=document.getElementById("title").getAttribute("value");
+    var ptitle=document.getElementById("title").value;
     var gather=ptitle+", "+document.getElementById("rate").value;
     for(var ca=0; ca<page;ca++){
 	gather+=", "+img[ca];

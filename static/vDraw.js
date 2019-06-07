@@ -11,18 +11,7 @@ c.width = window.innerWidth-20;
 var run = document.getElementById("run");
 var done=false;
 
-if(!done){
-    var a= document.getElementById("run").getAttribute("gather");
-    a=a.split(" ,");
-    var row = document.getElementById("slide");
-    var pag=2;
-    while(a[pag]!=null){
-	var cell= row.insertCell(pag-2);
-	cell.innerHTML='<img class="custom" src="'+a[pag]+'"/>';
-	pag++;
-    }
-    done=!done;
-}
+
 run.addEventListener('click', function(e){
     var s= document.getElementById("run").getAttribute("gather");
     s=s.split(" ,");
