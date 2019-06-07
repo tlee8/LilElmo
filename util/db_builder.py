@@ -140,6 +140,29 @@ def get_com(title):
 	db.close()  #close database
 	return data
 
+def get_titles():
+	db = sqlite3.connect(DB_FILE)
+	c = db.cursor()
+	
+	data = []
+	temp = c.execute("SELECT title FROM flipbooks").fetchall()
+	for entry in temp:
+		if (not entry in data):
+			data.append(entry)
+	db.close() #close
+	return data
+
+def get_titles(username):
+	db = sqlite3.connect(DB_FILE)
+	c = db.cursor()
+	
+	data = []
+	temp = c.execute("SELECT title FROM flipbooks WHERE username = '{}'".format(username)).fetchall()
+	for entry in temp:
+		if (not entry in data):
+			data.append(entry)
+	db.close() #close
+	return data
 #def get_likes
 
 	
@@ -155,9 +178,11 @@ def main(): #calls all of the functions to build the databases
 
 #### TESTS ####
 main()
-print(check_title("YESSS"))
-print(check_title("Input Project Name"))
+#print(check_title("YESSS"))
+#print(check_title("Input Project Name"))
 #print(build_ani('Input Project Name'))
-add_com('b','Input Project Name', 'this is amazing')
-add_com('b','Input Project Name', 'this sucks')
-print(get_com("Input Project Name"))
+#add_com('b','Input Project Name', 'this is amazing')
+#add_com('b','Input Project Name', 'this sucks')
+#3print(get_com("Input Project Name"))
+print(get_titles("b"))
+print(get_titles("asd"))

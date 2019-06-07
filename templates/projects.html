@@ -1,0 +1,32 @@
+{%extends "base.html"%}
+
+{%block title%} Login {%endblock%}
+
+{%block header%}<h2>BATTery</h2>{%endblock%}
+
+{%block page%}
+
+My Projects
+
+{%endblock%}
+
+
+
+{%block alerts%}
+
+{% set msgs = get_flashed_messages() %}
+
+{% for each in msgs %}
+
+<div class="alert alert-danger" role="alert">{{each}} </div>
+
+{% endfor %}
+
+{%endblock%}
+
+
+
+{%block body%}
+<h1> My List <h1>
+
+{%endblock%}

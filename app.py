@@ -121,10 +121,15 @@ def result():
       result = request.form
       print(result)
       db_builder.add_ani('b',result['imgstring'])
-      return render_template("result.html", result = result)
+      return render_template("biew.html", result = result)
 
-
-
+@app.route("/projects", methods=['POST','GET'])
+def myProjects():
+	''' Displays users projects'''
+	return render_template("projects.html")
+	
+	
+	
 if __name__== "__main__":
     app.debug = True
     app.run()
