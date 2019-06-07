@@ -1,9 +1,14 @@
 import sqlite3
-DB_FILE="data/elmo.db"
+import os
+
+DIR = os.path.dirname(__file__) or '.'
+DIR += '/../'
+
+DB_FILE = DIR + "data/elmo.db"
 
 def createTable():
     """Creates the two main data tables for users and list of stories."""
-    db = sqlite3.connect("../"+DB_FILE)
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "CREATE TABLE users (username TEXT, password TEXT)"
     c.execute(command)
@@ -24,7 +29,7 @@ def createTable():
 
 def add_user(username, password):
     """Insert credentials for newly registered user into database."""
-    db = sqlite3.connect("../"+DB_FILE)
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("INSERT INTO users VALUES(?, ?)", (username, password))
     db.commit() #save changes
@@ -32,7 +37,7 @@ def add_user(username, password):
 
 def auth_user(username, password):
     """Authenticate a user attempting to log in."""
-    db = sqlite3.connect("../"+DB_FILE)
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
     # user_info = c.execute("SELECT users.username, users.password FROM users WHERE username={} AND password={}".format(username, password))
@@ -45,7 +50,7 @@ def auth_user(username, password):
 
 def check_user(username):
     """Check if a username has already been taken when registering."""
-    db = sqlite3.connect("../"+DB_FILE)
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
     for entry in c.execute("SELECT users.username FROM users"):
@@ -58,7 +63,7 @@ def check_user(username):
 
 def add_ani(user, animation):
     """add animation to db"""
-    db = sqlite3.connect("../"+DB_FILE)
+    db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
     ani= animation.split(", ")
