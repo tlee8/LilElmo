@@ -8,6 +8,7 @@
 Our project is an app where a user can make an animation via flipbook style. The user draws each individual frame, which can then be played in succession, creating the animation. Then the user will be able to post their own animation and comment on others on topic threads. Users will be able to play, vote, and comment on other peoples animations. 
 
 ## a video demo
+https://youtu.be/L4lzXcPyiEw
 
 ## LAUNCH CODES
 
